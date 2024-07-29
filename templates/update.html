@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+{% block title %}Services Page{% endblock title %}
+{% block head %}
+<style>
+   .form-control2, .form-label, .form-select{
+      margin-left: 37%;
+   }
+   .btn2{
+    margin-left: 21%;
+   }
+   
+
+</style>
+{% endblock head %}
+{% block page %}Services{% endblock page %}
+{% block body %}
+<div class="container">
+    <form action="/update/" method="post">
+        {% csrf_token %}
+        <div class="row">
+        <div class="mb-3 col-md-7">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <select name="updateblog" class="form-select" id="deleteblog">
+            {% if user.is_superuser %}
+                    {% if blogs|length > 1 %}
+                    <option value="All">All</option>
+                    {% endif %}
+                    {% endif %}
+            {% for blog in blogs %}
+            {% if user.is_superuser %}
+            <option value="{{ blog.title }}">{{ blog.title }}</option>
+            {% else %}
+                {% if blog.user == user.username%}
+                <option value="{{ blog.title }}">{{ blog.title }}</option>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+              </select>
+        </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-7">
+                <label for="exampleFormControlTextarea1" class="form-label ml-10">Changed Content</label>
+                {% if blogs%}
+                <textarea  class="form-control form-control2" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+                {% else %}
+                <textarea  class="form-control form-control2" name="content" style="cursor: text;" id="exampleFormControlTextarea1" rows="3" disabled></textarea>
+
+                {% endif %}
+            </div>
+        </div>
+        {% if blogs%}
+        <button type="submit" class="btn btn2 btn-primary">Submit</button>
+        {% endif %}
+    </form>
+</div>
+{% endblock body %}

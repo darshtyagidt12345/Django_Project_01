@@ -1,0 +1,8 @@
+User Name | Pass | Roll
+    DarshTyagi1234 | `abc123def456` | Admin
+    Darsh15  | abc123def456 | User
+    deepak372 | `123abc456def` | Admin
+    deepak10 | 123abc456def | User
+    DarshTyagi12 | 123def789jkl | Staff
+    DeepakTyagi12 | 123def789jkl | Staff
+    
